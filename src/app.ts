@@ -1,8 +1,10 @@
-const a: number = 10;
-const b: number = 3;
+/**
+ * Number, string, boolean types
+ */
+let revenue: number = 1000;
+let bonus: number = 500;
+let c: string = 'dsds';
+let b: boolean = true;
 
-function sum(a: number, b: number): void {
-  console.log(a + b);
-}
-
-sum(a, b);
+let res: number = revenue + bonus;
+console.log(res);
