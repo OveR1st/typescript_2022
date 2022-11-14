@@ -150,3 +150,41 @@ const user5: User1 = {
 // type User2 = {
 //   age: string;
 // };
+
+/**
+ * Optional
+ */
+
+interface IUserOpt {
+  login: string;
+  password?: string;
+}
+
+const userOpt: IUserOpt = {
+  login: '3e3ed@gmail.com',
+  //   password: 'dadadadaed3',
+};
+
+function multiply(first: number, second?: number): number {
+  if (!second) {
+    return first * first;
+  }
+  return first * second;
+}
+multiply(4);
+
+interface UserPro {
+  login: string;
+  password?: {
+    type: 'primary' | 'secondary';
+  };
+}
+
+function testPass(user: UserPro) {
+  const t = user.password?.type;
+}
+
+function test1(param?: string) {
+  //param === undefined
+  const t = param ?? multiply(5);
+}
