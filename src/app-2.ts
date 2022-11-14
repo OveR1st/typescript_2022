@@ -82,3 +82,45 @@ const user2: UserWithRole = {
   skills: ['1', '2'],
   id: 2,
 };
+
+/**
+ * Interface 24 lesson
+ */
+
+interface IUser2 {
+  name: string;
+  age: number;
+  skills: string[];
+
+  log: (id: number) => string;
+}
+
+interface Role2 {
+  roleId: number;
+}
+
+interface IUserWithRole extends IUser2, Role2 {
+  city?: string;
+  createdAt?: Date;
+}
+
+const user3: IUserWithRole = {
+  name: 'asd',
+  age: 33,
+  skills: ['1', '2'],
+  roleId: 2,
+
+  log(id) {
+    return '';
+  },
+};
+
+interface IUserDic {
+  [index: number]: User;
+}
+
+type IUserDic2 = {
+  [index: number]: User;
+};
+
+type ud = Record<number, User>;
