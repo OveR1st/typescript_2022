@@ -12,12 +12,29 @@ console.log(res);
 /**
  * Function types
  */
-function getFullName(firstname: string, surname: string): string {
-  return `${firstname} ${surname}`;
+
+function getFullName(userEntity: IUser): string {
+  return `${userEntity.firstname} ${userEntity.surname}`;
 }
 
 const getFullNameArrow = (firstname: string, surname: string): string => {
   return `${firstname} ${surname}`;
 };
 
-console.log(getFullName('Dmitriy', 'Telniy'));
+/**
+ * Object types
+ */
+interface IUser {
+  firstname: string;
+  surname: string;
+  city: string;
+  age: string;
+}
+
+const user = {
+  firstname: 'Dmitriy',
+  surname: 'Telniy',
+  city: 'Odessa',
+  age: '26',
+};
+console.log(getFullName(user));
