@@ -38,3 +38,24 @@ const user = {
   age: '26',
 };
 console.log(getFullName(user));
+
+/**
+ * Arrays 15 lesson
+ */
+
+const skills: string[] = ['Dev', 'DevOps', 'Designer', 'QA'];
+
+for (const skill of skills) {
+  console.log(skill.toLocaleLowerCase());
+}
+
+const reduce: string[] = skills
+  .filter(s => s !== 'DevOps')
+  .map(s => s + '! ')
+  .reduce((accum: string[], value) => {
+    accum.push(value.toLocaleLowerCase());
+
+    return accum;
+  }, []);
+
+console.log('reduce', reduce);
