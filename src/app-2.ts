@@ -124,3 +124,29 @@ type IUserDic2 = {
 };
 
 type ud = Record<number, User>;
+
+/**
+ * Interface vs Types
+ */
+
+interface User1 {
+  name: string;
+}
+
+interface User1 {
+  age: number;
+}
+//is merge interface
+
+const user5: User1 = {
+  name: 'as',
+  age: 33,
+};
+
+// type User2 = {
+//   name: string;
+// };
+
+// type User2 = {
+//   age: string;
+// };
