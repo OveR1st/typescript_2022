@@ -46,8 +46,8 @@ function logMultipleIds(a: string | number, b: string | boolean) {
 //   POST = 'POST',
 // }
 
-function fetchWithAuth(url: string, method: 'POST' | 'GET'): 1 | -1 {
-  fetch(url, method);
+function fetchWithAuth(url: string, method: httpMethod): 1 | -1 {
+  //   fetch(url, method);
   return 1;
 }
 
@@ -56,4 +56,29 @@ const b3 = 'dsadd';
 
 const method = 'POST';
 //warning
-fetchWithAuth('fdfd', method);
+// fetchWithAuth('fdfd', method);
+
+/**
+ * Type Aliases 23 lesson
+ */
+type httpMethod = 'post' | 'get';
+
+type User = {
+  name: string;
+  age: number;
+  skills: string[];
+};
+
+type Role = {
+  name: string;
+  id: number;
+};
+//intersection
+type UserWithRole = User & Role;
+
+const user2: UserWithRole = {
+  name: 'asd',
+  age: 33,
+  skills: ['1', '2'],
+  id: 2,
+};
