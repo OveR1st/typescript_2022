@@ -37,3 +37,23 @@ function logMultipleIds(a: string | number, b: string | boolean) {
   } else {
   }
 }
+
+/**
+ * Literal types 22 lesson
+ */
+// enum RequestType {
+//   GET = 'GET',
+//   POST = 'POST',
+// }
+
+function fetchWithAuth(url: string, method: 'POST' | 'GET'): 1 | -1 {
+  fetch(url, method);
+  return 1;
+}
+
+let a = 'dsadd';
+const b3 = 'dsadd';
+
+const method = 'POST';
+//warning
+fetchWithAuth('fdfd', method);
