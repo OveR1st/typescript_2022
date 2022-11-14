@@ -69,3 +69,11 @@ const skill: [number, string] = [1, 'Dev'];
 const [id, skillName] = skill;
 
 const arr: [number, string, ...boolean[]] = [1, 'sdd', true, false, true];
+
+/**
+ * ReadOnly 17 lesson
+ */
+const skillReadOnly: readonly [number, string] = [1, 'Dev'];
+const skillsReadOnly: readonly string[] = ['dev', 'qa'];
+
+const skillsReadOnly1: ReadonlyArray<string> = ['dev', 'qa'];
