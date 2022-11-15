@@ -221,5 +221,50 @@ const skills2 = ['Dev', 'DevOps'];
 const user533 = {
   s: [''],
 };
-
 skills2.forEach(s => user533.s.push(s));
+
+/**
+ * unknown мы не знаем что лежит в переменной
+ */
+
+let input: unknown;
+
+input = 3;
+input = ['ddd', '4r4r', 3];
+
+//Мы не можем положить unknown переменную в ту где тип отличается от нее
+//Можно назначить unknown в any или unknown
+let res222: unknown = input;
+
+function run(i: unknown) {
+  if (typeof i == 'number') {
+    return i++;
+  } else {
+    //Здесь не будет сужение типа
+  }
+}
+
+run(input);
+async function getData(params: any) {
+  try {
+    await fetch('');
+  } catch (error) {
+    //проверка что эррор это инстанс от Эррор
+    if (error instanceof Error) console.log(error.message);
+  }
+}
+
+async function getDataForce(params: any) {
+  try {
+    await fetch('');
+  } catch (error) {
+    //принудительный каст переменной к Эррор
+    //таак делать не нужно так как возможно app ляжет из-за того что опять же может прийти что то другое
+
+    const e = error as Error;
+  }
+}
+//все union типы будет unknown если мы делаем ИЛИ (но & И будет не unknown)
+type U1 = unknown | number;
+
+type I1 = unknown & string;
