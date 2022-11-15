@@ -188,3 +188,38 @@ function test1(param?: string) {
   //param === undefined
   const t = param ?? multiply(5);
 }
+
+/**
+ * Void
+ */
+
+function logId1(id: string | number): void {
+  console.log(id);
+}
+//void - ничего не возвращает
+const a1 = logId(1);
+
+function multiply1(f: number, s?: number) {
+  if (!s) {
+    return f * f;
+  }
+}
+
+type voidFunc = () => void;
+
+const f1: voidFunc = () => {};
+
+const f2: voidFunc = () => {
+  //нам все равно что возврашает функция
+  return true;
+};
+//: void мв игнорируем что функция может что то вернуть
+const b2 = f2();
+
+const skills2 = ['Dev', 'DevOps'];
+
+const user533 = {
+  s: [''],
+};
+
+skills2.forEach(s => user533.s.push(s));
