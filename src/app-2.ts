@@ -350,3 +350,55 @@ function getUser() {
 
 const user233 = getUser()
 const n55 = user233?.name
+
+/**
+ * Приведение типов
+ */
+
+let a22 = 5;
+let b22: string  = a.toString()
+let e: string = new String(a22).valueOf()
+let f: boolean = new Boolean(a22).valueOf()
+
+let c2 = 'dd'
+let d: number = parseInt(c2)
+
+interface User333 {
+  name: string
+  email: string
+  login: string
+}
+
+// const user2333: User333 = <User333> {
+//   name: 'Dima',
+//   email: 'dima@gmail.com',
+//   login: 'dimaz',
+// }
+
+const user2333: User333 = {
+  name: 'Dima',
+  email: 'dima@gmail.com',
+  login: 'dimaz',
+}
+
+interface Admin {
+  name: string
+  role: number
+
+}
+
+const admin33: Admin = {
+  /**
+   * Проблема так в том что в рантайме админ будет иметь поля юзера которые не нужны админу
+   */
+  ...user2333,
+  role: 1
+}
+
+function userToAdmin (user: User333 ): Admin {
+  // функция мапинга
+  return {
+    name: user.name,
+    role: 3
+  }
+}
