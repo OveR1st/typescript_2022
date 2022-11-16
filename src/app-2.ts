@@ -268,3 +268,52 @@ async function getDataForce(params: any) {
 type U1 = unknown | number;
 
 type I1 = unknown & string;
+
+/**
+ * never (никогда не вернется, присвоится. )
+ */
+
+function generateError(message: string): never {
+  throw new Error(message);
+}
+//никогда не вернется
+function dumpError(): never {
+  while (true) {}
+}
+
+function rec(): never {
+  return rec();
+}
+
+//мы ничего не можем присвоить
+const a2222: never = 1;
+
+type paymentAction = 'refund' | 'checkout';
+
+function proccessAction(action: paymentAction) {
+  switch (action) {
+    case 'refund':
+      //..
+      break;
+    case 'checkout':
+      //...
+      break;
+    default:
+      //сюда экшен никогда не попадет и поэтому тут never уместен
+      /* если в тип добавить еще один кейс и не обработать его в switch case то мы здесь уже будет ловить этот 
+         новый тип и тогда невер ругнется 
+      */
+      const _: never = action;
+      throw new Error('Нет такого action');
+  }
+}
+)
+function isString(x: string | number): boolean {
+  if (typeof x === 'string') {
+    return true;
+  } else if (typeof x === 'number') {
+    return false;
+  }
+  //ичерпавающая проверка
+  // generateError('dfdf')
+}
