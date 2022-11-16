@@ -317,3 +317,36 @@ function isString(x: string | number): boolean {
   //ичерпавающая проверка
   // generateError('dfdf')
 }
+
+/**
+ * null type
+ */
+
+const n: null = null;
+
+//null строго к null если (strictNullChecks выключен)
+// const n1: null = undefined
+
+const n2: number = null
+const n3: string = null
+const n4: boolean = null
+const n5: undefined = null
+
+interface User2 {
+  name: string
+}
+
+function getUser() {
+  if(Math.random() > 0.5) {
+    //осознаный возврат null если мы знаем что в кейсе не будет возврата обьекта 
+    //undefined возврат не явный в runtime
+    return null
+  } else {
+    return {
+      name: 'Dima'
+    } as User2
+  }
+}
+
+const user233 = getUser()
+const n55 = user233?.name
