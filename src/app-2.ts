@@ -307,7 +307,7 @@ function proccessAction(action: paymentAction) {
       throw new Error('Нет такого action');
   }
 }
-)
+
 function isString(x: string | number): boolean {
   if (typeof x === 'string') {
     return true;
@@ -327,46 +327,46 @@ const n: null = null;
 //null строго к null если (strictNullChecks выключен)
 // const n1: null = undefined
 
-const n2: number = null
-const n3: string = null
-const n4: boolean = null
-const n5: undefined = null
+const n2: number = null;
+const n3: string = null;
+const n4: boolean = null;
+const n5: undefined = null;
 
 interface User2 {
-  name: string
+  name: string;
 }
 
 function getUser() {
-  if(Math.random() > 0.5) {
-    //осознаный возврат null если мы знаем что в кейсе не будет возврата обьекта 
+  if (Math.random() > 0.5) {
+    //осознаный возврат null если мы знаем что в кейсе не будет возврата обьекта
     //undefined возврат не явный в runtime
-    return null
+    return null;
   } else {
     return {
-      name: 'Dima'
-    } as User2
+      name: 'Dima',
+    } as User2;
   }
 }
 
-const user233 = getUser()
-const n55 = user233?.name
+const user233 = getUser();
+const n55 = user233?.name;
 
 /**
  * Приведение типов
  */
 
 let a22 = 5;
-let b22: string  = a.toString()
-let e: string = new String(a22).valueOf()
-let f: boolean = new Boolean(a22).valueOf()
+let b22: string = a.toString();
+let e: string = new String(a22).valueOf();
+let f: boolean = new Boolean(a22).valueOf();
 
-let c2 = 'dd'
-let d: number = parseInt(c2)
+let c2 = 'dd';
+let d: number = parseInt(c2);
 
 interface User333 {
-  name: string
-  email: string
-  login: string
+  name: string;
+  email: string;
+  login: string;
 }
 
 // const user2333: User333 = <User333> {
@@ -379,12 +379,11 @@ const user2333: User333 = {
   name: 'Dima',
   email: 'dima@gmail.com',
   login: 'dimaz',
-}
+};
 
 interface Admin {
-  name: string
-  role: number
-
+  name: string;
+  role: number;
 }
 
 const admin33: Admin = {
@@ -392,13 +391,47 @@ const admin33: Admin = {
    * Проблема так в том что в рантайме админ будет иметь поля юзера которые не нужны админу
    */
   ...user2333,
-  role: 1
-}
+  role: 1,
+};
 
-function userToAdmin (user: User333 ): Admin {
+function userToAdmin(user: User333): Admin {
   // функция мапинга
   return {
     name: user.name,
-    role: 3
+    role: 3,
+  };
+}
+/**
+ * Type Guard (33 lesson)
+ */
+
+function logId32(id: string | number) {
+  if (isString1(id)) {
+    //string
+    console.log(id);
+  } else {
+    //number
+    console.log(id);
+  }
+}
+
+function isString1(x: string | number): x is string {
+  return typeof x === 'string';
+}
+
+function isAdmin(user: User | Admin): user is Admin {
+  return 'role' in user;
+}
+
+function isAdminAlternative(user: User | Admin): user is Admin {
+  return (user as Admin).role !== undefined;
+}
+
+function setRoleZero(user: User | Admin) {
+  if (isAdmin(user)) {
+    //здесь объект юзер является админом с его полями
+    user.role = 0;
+  } else {
+    throw new Error('User не админ');
   }
 }
