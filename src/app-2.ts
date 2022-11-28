@@ -435,3 +435,28 @@ function setRoleZero(user: User | Admin) {
     throw new Error('User не админ');
   }
 }
+
+/**
+ * Asserts (35 lesson)
+ */
+
+interface User35 {
+  name: string;
+}
+
+const obj35 = {};
+assertUser(obj35);
+//здесь obj35 является юзером
+
+obj35.name = 'Vas9';
+
+function assertUser(obj: unknown): asserts obj is User35 {
+  if (typeof obj === 'object' && !!obj && 'name' in obj) {
+    //если входной объект является User35 то asserts нам это подтвердит и вернет грубо говоря ничего
+    // но мы после ее выполнения уже работаем как с User35
+
+    //P.S без asserts нам бы пришлось делать if проверки чтобы определить где мы работаем с нужными полями
+    return;
+  }
+  new Error('Не пользователь');
+}
