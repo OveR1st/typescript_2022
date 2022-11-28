@@ -39,3 +39,28 @@ interface IResponseFailed {
 // }
 
 // function get(): IResponseSuccess | IResponseFailed {}
+
+/**
+ * Type Guart test (34 lesson)
+ */
+
+type Res = IResponseSuccess | IResponseFailed;
+
+function checkIsResponseSuccess(res: Res): res is IResponseSuccess {
+  if (res.status === StatusCode1.SUCCESS) {
+    return true;
+  } else {
+    return false;
+  }
+  // return 'databaseId' in res.data;
+}
+
+function get(res: Res): number {
+  if (checkIsResponseSuccess(res)) {
+    console.log(res.data.databaseId);
+    return res.data.databaseId;
+  } else {
+    console.log(res.data.errorCode);
+    throw new Error(res.data.errorMessage);
+  }
+}
