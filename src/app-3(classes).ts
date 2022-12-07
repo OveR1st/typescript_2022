@@ -95,3 +95,37 @@ const payment = new Payment(1);
 payment.unholdPayment();
 
 const time = payment.getPaymentLifeTime();
+
+/**
+ * Overloads Methods (40 lessons)
+ */
+
+class User40 {
+  skill: string[];
+
+  addSkills(skill: string): void;
+  addSkills(skill: string[]): void;
+  addSkills(skillOrSkills: string | string[]): void {
+    if (typeof skillOrSkills === 'string') {
+      this.skill.push(skillOrSkills);
+    } else {
+      this.skill.concat(skillOrSkills);
+    }
+  }
+}
+
+// const us = new User40().addSkills()
+// us.addSkills('front');
+// us.addSkills(['qa', 'back']);
+function run40(distance: string): string;
+function run40(distance: number): number;
+function run40(distance: string | number): string | number {
+  if (typeof distance == 'string') {
+    return distance;
+  } else {
+    return distance;
+  }
+}
+
+run40('2');
+run40(2);
