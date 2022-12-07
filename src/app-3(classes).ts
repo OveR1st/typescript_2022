@@ -55,3 +55,43 @@ const user38 = new UserClass38('Dima');
 const user382 = new UserClass38();
 const user3823 = new UserClass38(33);
 const user382333 = new UserClass38('Dima', 26);
+
+/**
+ * Methods 39 lesson
+ */
+
+enum PaymentStatus {
+  Holded,
+  Processed,
+  Reversed,
+}
+
+class Payment {
+  id: number;
+  status: PaymentStatus = PaymentStatus.Holded; //если делать по умолчанию то последовательность приоритета будет тут
+  createdAt: Date = new Date();
+  updateAt: Date;
+
+  constructor(id: number) {
+    //это заинит уже после
+    this.id = id;
+  }
+
+  getPaymentLifeTime(): number {
+    return new Date().getTime() - this.createdAt.getTime();
+  }
+
+  unholdPayment(): void {
+    if (this.status == PaymentStatus.Processed) {
+      throw new Error('Платеж не может быть возвращен!');
+    }
+
+    this.status = PaymentStatus.Reversed;
+    this.updateAt = new Date();
+  }
+}
+
+const payment = new Payment(1);
+payment.unholdPayment();
+
+const time = payment.getPaymentLifeTime();
