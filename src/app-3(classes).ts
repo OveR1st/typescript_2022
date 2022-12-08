@@ -193,3 +193,42 @@ class User42 implements IPayable, IDeletable {
     ///
   }
 }
+
+/**
+ * Extends (43 lesson)
+ */
+type PaymentStatus43 = 'new' | 'paid';
+class Payment43 {
+  id: number;
+  status: PaymentStatus43 = 'new';
+
+  constructor(id: number) {
+    this.id = id;
+  }
+
+  pay() {
+    this.status = 'paid';
+  }
+}
+
+class ParsistedPayment43 extends Payment43 {
+  database: number;
+  paidAt: Date;
+
+  constructor() {
+    const id = Math.random();
+    super(id);
+  }
+
+  save() {
+    // save
+  }
+
+  override pay(date?: Date) {
+    this.status = 'paid';
+    super.pay();
+    if (date) {
+      this.paidAt = date;
+    }
+  }
+}
