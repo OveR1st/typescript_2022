@@ -232,3 +232,32 @@ class ParsistedPayment43 extends Payment43 {
     }
   }
 }
+
+class User44 {
+  //1
+  name: string = 'user';
+
+  constructor() {
+    //2
+    console.log(this.name); //user
+  }
+}
+
+class Admin44 extends User44 {
+  //3
+  override name: string = 'admin';
+  age: number = 22;
+  constructor() {
+    //4
+    super();
+    console.log(this.name); //admin
+  }
+}
+
+class HttpError extends Error {
+  code: number;
+  constructor(m: string, code?: number) {
+    super(m);
+    this.code = code ?? 500;
+  }
+}
