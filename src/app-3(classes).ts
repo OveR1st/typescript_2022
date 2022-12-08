@@ -261,3 +261,59 @@ class HttpError extends Error {
     this.code = code ?? 500;
   }
 }
+
+/**
+ * Наследование против композиции (45 lesson)
+ */
+
+class User45 {
+  name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+class Users45 extends Array<User45> {
+  searchByName(name: string) {
+    return this.filter(u => u.name === name);
+  }
+  override toString(): string {
+    return this.map(u => u.name).join(', ');
+  }
+}
+const user45 = new Users45();
+user45.push(new User45('Dima'));
+user45.push(new User45('Вася'));
+user45.push(new User45('Петя'));
+console.log(user45.toString());
+
+class UserList45 {
+  //композиция
+  users: User45[];
+
+  push(u: User45) {
+    this.users.push(u);
+  }
+}
+
+class Payment45 {
+  date: Date;
+}
+
+class UserWithPayment extends Payment45 {
+  //При наследовании нам прийдется тащить за собой Payment45 мы здесь привязываемся
+  name: string;
+}
+
+class UserWithPayment2 {
+  //композиция
+  user: User45;
+  payment: Payment45;
+
+  constructor(user: User45, payment: Payment45) {
+    this.payment = payment;
+    this.user = user;
+  }
+}
+//Наследование лучше использовать в одной доменой структуре
