@@ -129,3 +129,30 @@ function run40(distance: string | number): string | number {
 
 run40('2');
 run40(2);
+
+/**
+ * Getter и Setter (41 lesson)
+ */
+
+class User41 {
+  _login: string;
+  password: string;
+  createdAt: Date;
+
+  set login(l: string | number) {
+    this._login = 'user-' + l;
+    this.createdAt = new Date();
+  }
+
+  get login() {
+    return this._login;
+  }
+  // гетеры и сетеры не помогают при работе с асинхронными вещами так как они всегда синронные и блокируют поток js
+
+  async getPassword(p: string) {}
+}
+
+const user41 = new User41();
+
+user41.login = 'myLogin';
+const t = user41.login;
