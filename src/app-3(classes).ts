@@ -317,3 +317,52 @@ class UserWithPayment2 {
   }
 }
 //Наследование лучше использовать в одной доменой структуре
+
+/**
+ * Property visible (46 lesson)
+ */
+
+class Vehicle {
+  public make: string;
+
+  private damages: string[];
+  private _model: string;
+
+  protected run: number;
+
+  //приватнсть через JS
+  #price: number;
+
+  set model(m: string) {
+    this._model = m;
+    this.#price = 200;
+  }
+
+  get model() {
+    // this.addDamage('d')
+    this.run = 4;
+    return this._model;
+  }
+
+  isPriseEqual(v: Vehicle) {
+    //еквивалентность двух свойств
+    return this.#price === v.#price;
+  }
+
+  private addDamage(damage: string) {
+    this.damages.push(damage);
+  }
+}
+
+new Vehicle().model = 'd';
+
+class EuroTrack extends Vehicle {
+  setDamage() {
+    //модифицроват можем у родителя только public (private нельзя)
+  }
+
+  setRun(km: number) {
+    this.run = km / 0.62;
+    //а вот к protected можно (это разница от private)
+  }
+}
