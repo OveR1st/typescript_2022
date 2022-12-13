@@ -366,3 +366,31 @@ class EuroTrack extends Vehicle {
     //а вот к protected можно (это разница от private)
   }
 }
+
+/**
+ * Static property (48 lesson)
+ */
+
+class UserService {
+  // static name: string = 'ddf'   //статик обратится к Function.name это зарезервированное свойство Function
+  private static db: any;
+
+  static getUser(id: number) {
+    return UserService.db.findById(id);
+  }
+
+  constructor(id: number) {}
+
+  create() {
+    UserService.db;
+  }
+
+  static {
+    //этот инициализатор выполнится сразу
+    UserService.db = 'sdf';
+  }
+}
+UserService.getUser(1);
+
+const instance48 = new UserService(1);
+instance48.create();
