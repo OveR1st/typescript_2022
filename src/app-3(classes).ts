@@ -433,3 +433,35 @@ class PaymentPersistent extends Payment49 {
 }
 
 console.log(new PaymentPersistent().save());
+
+/**
+ * Types This (50 lesson)
+ */
+
+class UserBuilder50 {
+  name: string;
+
+  setName(name: string): this {
+    this.name = name;
+    return this;
+  }
+
+  isAdmin(): this is AdminBuilder50 {
+    return this instanceof AdminBuilder50;
+  }
+}
+
+class AdminBuilder50 extends UserBuilder50 {
+  roles: string[]; //обьекты должны различатся чтобы тайпгарды работали
+}
+
+const res50 = new UserBuilder50().setName('Вася');
+const res502 = new AdminBuilder50().setName('Вася');
+
+let user50: UserBuilder50 | AdminBuilder50 = new UserBuilder50();
+
+if (user50.isAdmin()) {
+  console.log(user50);
+} else {
+  console.log(user50);
+}
