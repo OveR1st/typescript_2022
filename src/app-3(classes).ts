@@ -394,3 +394,42 @@ UserService.getUser(1);
 
 const instance48 = new UserService(1);
 instance48.create();
+
+/**
+ * This (контекст 49 lesson)
+ */
+
+class Payment49 {
+  private date: Date = new Date();
+
+  getDate(this: Payment49) {
+    //жесткое показываему тсу нужный нам контекст
+    return this.date;
+  }
+
+  getDateArrow = () => {
+    return this.date;
+  };
+}
+
+const p = new Payment49();
+console.log(p.getDate());
+
+const user49 = {
+  id: 1,
+  paymentDate: p.getDate, //нужен bind
+  getDateArrow: p.getDateArrow,
+};
+
+user49.paymentDate(); //потеря контекста
+user49.getDateArrow(); //не будет потери так как особеность поведения стрелочной функции
+
+class PaymentPersistent extends Payment49 {
+  save() {
+    return super.getDate();
+    return super.getDateArrow(); //код ляжет если обращаться к стрелочному методу в родителе
+    //потому что стрелочные функции не записываются в прототип  (можно доступ получить через this)
+  }
+}
+
+console.log(new PaymentPersistent().save());
