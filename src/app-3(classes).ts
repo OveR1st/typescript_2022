@@ -465,3 +465,32 @@ if (user50.isAdmin()) {
 } else {
   console.log(user50);
 }
+
+/**
+ * Абстрактные классы и методы (51 lesson)
+ */
+// От Абстрактных классов невозможно инсталироватся
+
+abstract class Controller {
+  abstract handle(req: any): void;
+
+  handleWithLogs(req: any) {
+    console.log('Start');
+    this.handle(req);
+    console.log('End');
+  }
+}
+
+class UserController extends Controller {
+  handle(req: any): void {
+    console.log(req);
+  }
+}
+// new Controller() - error
+const c51 = new UserController();
+c51.handleWithLogs('Request');
+/** console calls
+ * Start
+ * Request
+ * End
+ */
