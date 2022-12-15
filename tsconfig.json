@@ -95,4 +95,8 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   }
+  // "files": ["src/test5(abstract Logger).ts"]
+  // "include": ["app*"]  //включить файлы для компиляции
+  // "exclude": []  //исключить файлы для компиляции
+  // "extends": ""  //наследоваться от других ts.config
 }
