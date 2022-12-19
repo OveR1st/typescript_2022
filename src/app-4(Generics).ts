@@ -54,3 +54,30 @@ const logLine: ILogLine<{ a: number }> = {
     a: 1,
   },
 };
+/**
+ * limitation Generics (65 lesson)
+ */
+
+class Vehicle65 {
+  run: number;
+}
+
+function kmToMiles<T extends Vehicle65>(vehicle: T): T {
+  vehicle.run = vehicle.run / 0.62;
+
+  return vehicle;
+}
+
+class LCV extends Vehicle65 {
+  capacity: number;
+}
+
+const vehicle65 = kmToMiles(new Vehicle65());
+const lcv65 = kmToMiles(new LCV());
+kmToMiles({ run: 3 }); //класс же выступает в роли интерфейса и нам не обяхзательно делать инстанс
+
+function logId65<T extends string | number, Y>(id: T, additionalData: Y): { id: T; data: Y } {
+  console.log(id);
+  console.log(additionalData);
+  return { id, data: additionalData };
+}
