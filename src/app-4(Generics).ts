@@ -30,3 +30,27 @@ function getSplitedHalf62<T>(data: T[]): T[] {
 }
 
 const halflength62 = getSplitedHalf62<number>([4, 5, 6, 7]);
+
+/**
+ * Generic func, Interface, Types (64 lesson)
+ */
+
+const split64: <T>(data: Array<T>) => T[] = getSplitedHalf62;
+const split642: <Y>(data: Array<Y>) => Y[] = getSplitedHalf62;
+
+interface ILogLine<T> {
+  timeStamp: Date;
+  data: T;
+}
+
+type LogLineType<T> = {
+  timeStamp: Date;
+  data: T;
+};
+
+const logLine: ILogLine<{ a: number }> = {
+  timeStamp: new Date(),
+  data: {
+    a: 1,
+  },
+};
