@@ -55,23 +55,23 @@ enum Direction72 {
 type d = keyof typeof Direction72;
 
 /**
- * Indexed Access Types
+ * Indexed Access Types (74 lesson)
  */
 
-interface Permission73 {
+interface Permission74 {
   endDate: Date;
 }
-interface Role73 {
+interface Role74 {
   name: string;
 }
 
-interface User73 {
+interface User74 {
   name: string;
-  roles: Role73[];
-  permission: Permission73;
+  roles: Role74[];
+  permission: Permission74;
 }
 
-const user73: User73 = {
+const user74: User74 = {
   name: 'Вася',
   roles: [],
   permission: {
@@ -79,14 +79,14 @@ const user73: User73 = {
   },
 };
 
-const nameUser73 = user73['name'];
-const rolesNames73 = 'roles';
+const nameUser74 = user74['name'];
+const rolesNames74 = 'roles';
 
-type rolestype73 = User73['roles'];
-type roleType732 = User73[typeof rolesNames73];
+type rolestype74 = User74['roles'];
+type roleType742 = User74[typeof rolesNames74];
 
-type roleType73 = User73['roles'][number];
-type dateType = User73['permission']['endDate'];
+type roleType74 = User74['roles'][number];
+type dateType = User74['permission']['endDate'];
 
-const roles73 = ['admin', 'user', 'super-user'] as const;
-type roleTypes732 = typeof roles73[number];
+const roles74 = ['admin', 'user', 'super-user'] as const;
+type roleTypes742 = typeof roles74[number];
