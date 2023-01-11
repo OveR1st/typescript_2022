@@ -90,3 +90,58 @@ type dateType = User74['permission']['endDate'];
 
 const roles74 = ['admin', 'user', 'super-user'] as const;
 type roleTypes742 = typeof roles74[number];
+
+/**
+ * Conditional Types (75 lesson)
+ */
+
+const a75: number = Math.random() > 0.5 ? 1 : 0;
+
+interface HTTPResp75<T extends 'success' | 'failed'> {
+  code: number;
+  data: T extends 'success' ? string : Error;
+  additionalData: T extends 'success' ? string : number;
+}
+
+const done75: HTTPResp75<'success'> = {
+  code: 200,
+  data: 'done',
+  additionalData: 'done',
+};
+
+const error75: HTTPResp75<'failed'> = {
+  code: 200,
+  data: new Error(),
+  additionalData: 2,
+};
+
+class User75 {
+  id: number;
+  name: string;
+}
+
+class UserPers75 extends User75 {
+  dbId: string;
+}
+function getUser75(dbIdOrId: number): User75;
+function getUser75(dbIdOrId: string): UserPers75;
+function getUser75(dbIdOrId: string | number): User75 | UserPers75 {
+  if (typeof dbIdOrId === 'number') {
+    return new User75();
+  } else {
+    return new UserPers75();
+  }
+}
+
+type UserOrPers75<T extends string | number> = T extends number ? User75 : UserPers75;
+
+function getUser752<T extends string | number>(id: T): UserOrPers75<T> {
+  if (typeof id === 'number') {
+    return new User75() as UserOrPers75<T>;
+  } else {
+    return new UserPers75() as UserOrPers75<T>;
+  }
+}
+
+const res75 = getUser752(1);
+const res752 = getUser752('2');
