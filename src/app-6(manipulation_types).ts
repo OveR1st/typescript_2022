@@ -194,3 +194,29 @@ type UserAccess177 = {
   projects?: boolean;
   adminPanel?: boolean;
 };
+
+/**
+ * Template Literal Types (79 lesson)
+ */
+
+type ReadOrWrite79 = 'read' | 'write';
+type Bulk79 = 'bulk' | '';
+
+type Access79 = `can${Capitalize<ReadOrWrite79>}${Capitalize<Bulk79>}`;
+
+type ReadOrWriteBulk79<T> = T extends `can${infer R}` ? R : never;
+
+type T79 = ReadOrWriteBulk79<Access79>;
+
+// type Access79 = `can${Capitalize<ReadOrWrite79>}`
+type Access279 = `can${Uppercase<ReadOrWrite79>}`;
+
+type ErrorOrSuccess = 'error' | 'success';
+
+interface ResponseT79 {
+  result: `http${Capitalize<ErrorOrSuccess>}`;
+}
+
+const a79: ResponseT79 = {
+  result: 'httpSuccess',
+};
