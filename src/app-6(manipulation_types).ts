@@ -180,7 +180,8 @@ type UserRoles77 = {
 type ModifierToAccess77<Type> = {
   +readonly ////тип для мапинга
   /**
-   *  Когда нам нужны такие же ключи но с другими типами
+   *  Когда нам нужны такие же ключи но с другими типами.
+   * Пришло что то с бека и нам нужно доопределить вложеность у свойств
    *  Exclude исключает из итогово обьекта тип свойство
    */
   [Property in keyof Type as Exclude<`canAccess${string & Property}`, 'canAccessprojects'>]-?: boolean;
