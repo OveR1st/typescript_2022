@@ -164,3 +164,32 @@ runTransaction76(transaxtion76);
  * Infer достает тип из чего либо не определенного и делает это типом
  */
 type GetFirstArg76<T> = T extends (first: infer First76, ...args: any[]) => any ? First76 : never;
+
+/**
+ * Mapped Types 77 (lesson)
+ */
+
+type Modifier77 = 'read' | 'create' | 'update';
+
+type UserRoles77 = {
+  customers?: Modifier77;
+  projects?: Modifier77;
+  adminPanel: Modifier77;
+};
+
+type ModifierToAccess77<Type> = {
+  +readonly ////тип для мапинга
+  /**
+   *  Когда нам нужны такие же ключи но с другими типами
+   *  Exclude исключает из итогово обьекта тип свойство
+   */
+  [Property in keyof Type as Exclude<`canAccess${string & Property}`, 'canAccessprojects'>]-?: boolean;
+};
+
+type UserAccess1772 = ModifierToAccess77<UserRoles77>;
+
+type UserAccess177 = {
+  customers?: boolean;
+  projects?: boolean;
+  adminPanel?: boolean;
+};
