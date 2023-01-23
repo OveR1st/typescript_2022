@@ -145,3 +145,22 @@ function getUser752<T extends string | number>(id: T): UserOrPers75<T> {
 
 const res75 = getUser752(1);
 const res752 = getUser752('2');
+
+/**
+ * Infer 76 (lesson)
+ */
+
+function runTransaction76(transaction: { fromTo: [string, string] }) {
+  console.log(transaction);
+}
+
+const transaxtion76: GetFirstArg76<typeof runTransaction76> = {
+  //костыль кастовать  (as [string, string]) к строке
+  fromTo: ['1', '2'],
+};
+
+runTransaction76(transaxtion76);
+/**
+ * Infer достает тип из чего либо не определенного и делает это типом
+ */
+type GetFirstArg76<T> = T extends (first: infer First76, ...args: any[]) => any ? First76 : never;
