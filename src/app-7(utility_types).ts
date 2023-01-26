@@ -58,3 +58,28 @@ type first83 = PT83[0];
 
 type CP83 = ConstructorParameters<typeof User83>;
 type IT83 = InstanceType<typeof User83>;
+
+/**
+ * Awaited (84 lesson)
+ */
+type A84 = Awaited<Promise<Promise<string>>>;
+
+interface IMenu84 {
+  name: string;
+  url: string;
+}
+
+async function getMenu84(): Promise<IMenu84[]> {
+  return [{ name: 'Bacя', url: 'analytics' }];
+}
+
+//Awaited нужен чтобы развернуть промис и достать возвращаемый тип промисса
+
+type R84 = Awaited<ReturnType<typeof getMenu84>>;
+
+async function getArray84<T>(x: T): Promise<Awaited<T>[]> {
+  return [await x];
+}
+async function getArray842<T>(x: T): Promise<T[]> {
+  return [await x];
+}
