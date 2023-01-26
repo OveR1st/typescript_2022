@@ -34,3 +34,27 @@ type PaymentRequisits82 = Pick<PaymentPersistent82, 'from' | 'sum'>;
 
 type ExtractEx82 = Extract<'from' | 'to' | PaymentPersistent82, string>;
 type ExcludeEx82 = Exclude<'from' | 'to' | PaymentPersistent82, string>;
+
+/**
+ * ReturnType, Parameters, ConstructorParameters (83 lesson)
+ */
+//ReturnType позволяет на нексте удобно получить статичные пропсы, ну или в целом мы не знаем что возвращаем функция
+// и мы можем попытаться вытащить возвращаемый тип
+class User83 {
+  constructor(public id: number, public name: string) {}
+}
+
+function getData83(id: number): User83 {
+  return new User83(id, 'Вася');
+}
+
+type RT83 = ReturnType<typeof getData83>;
+type RT283 = ReturnType<() => void>; //void
+type RT383 = ReturnType<<T>() => T>; //unknown
+type RT483 = ReturnType<<T extends string>() => T>; //string
+
+type PT83 = Parameters<typeof getData83>;
+type first83 = PT83[0];
+
+type CP83 = ConstructorParameters<typeof User83>;
+type IT83 = InstanceType<typeof User83>;
