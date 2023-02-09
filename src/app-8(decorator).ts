@@ -6,6 +6,8 @@ interface IUserService86 {
   users: number;
   getUsersInDatabase(): number;
 }
+@setUserAdvanced87(4)
+@setUsers88(2) //функция
 @threeUserAdvanced87 // вызов второй   (new UserServie86().getUsersInDatabase() - выведет 3)
 @nullUser86 // вызов первый
 class UserServie86 implements IUserService86 {
@@ -20,10 +22,23 @@ function nullUser86(target: Function) {
   //... декоратор это функция которая что то переопределяет у инстанса
   target.prototype.users = 0;
 }
+function setUsers88(users: number) {
+  return (target: Function) => {
+    target.prototype.users = users;
+  };
+}
+////////////////
 
 function threeUserAdvanced87<T extends { new (...args: any): {} }>(constructor: T) {
   return class extends constructor {
     users = 3;
+  };
+}
+function setUserAdvanced87(users: number) {
+  return <T extends { new (...args: any): {} }>(constructor: T) => {
+    return class extends constructor {
+      users = users;
+    };
   };
 }
 
@@ -43,5 +58,5 @@ console.log(nullUser86(logUser86(new UserServie86())).getUsersInDatabase()); // 
  */
 
 /**
- * Class Decorator (87 lesson)
+ * Fabric Decorator (88 lesson)
  */
