@@ -60,3 +60,41 @@ console.log(nullUser86(logUser86(new UserServie86())).getUsersInDatabase()); // 
 /**
  * Fabric Decorator (88 lesson)
  */
+
+/**
+ * Method Decorator (90 lesson)
+ */
+
+interface IUserService90 {
+  users: number;
+  getUsersInDatabase(): number;
+}
+
+class UserService90 implements IUserService90 {
+  users: number = 1000;
+
+  @Log90
+  getUsersInDatabase(): number {
+    throw new Error('Ошибка');
+  }
+}
+
+function Log90(
+  target: Object,
+  propertyKey: string | symbol,
+  descriptor: TypedPropertyDescriptor<(...args: any) => any>,
+): TypedPropertyDescriptor<(...args: any) => any> | void {
+  console.log(target); // {}
+  console.log(propertyKey); // getUsersInDatabase
+  console.log(descriptor);
+
+  // const oldValue =descriptor.value;
+
+  descriptor.value = () => {
+    console.log('no error');
+
+    // descriptor.value()
+  };
+}
+
+console.log(new UserService90().getUsersInDatabase());
