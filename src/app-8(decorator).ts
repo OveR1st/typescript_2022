@@ -73,28 +73,59 @@ interface IUserService90 {
 class UserService90 implements IUserService90 {
   users: number = 1000;
 
-  @Log90
+  @Log90()
+  @Catch({ rethrow: true })
   getUsersInDatabase(): number {
     throw new Error('Ошибка');
   }
 }
 
-function Log90(
-  target: Object,
-  propertyKey: string | symbol,
-  descriptor: TypedPropertyDescriptor<(...args: any) => any>,
-): TypedPropertyDescriptor<(...args: any) => any> | void {
-  console.log(target); // {}
-  console.log(propertyKey); // getUsersInDatabase
-  console.log(descriptor);
+function Log90() {
+  return (
+    target: Object,
+    propertyKey: string | symbol,
+    descriptor: TypedPropertyDescriptor<(...args: any) => any>,
+  ): TypedPropertyDescriptor<(...args: any) => any> | void => {
+    console.log(target); // {}
+    console.log(propertyKey); // getUsersInDatabase
+    console.log(descriptor);
 
-  // const oldValue =descriptor.value;
+    // const oldValue =descriptor.value;
 
-  descriptor.value = () => {
-    console.log('no error');
+    descriptor.value = () => {
+      console.log('no error');
 
-    // descriptor.value()
+      // descriptor.value()
+    };
   };
+
+  console.log(new UserService90().getUsersInDatabase());
 }
 
-console.log(new UserService90().getUsersInDatabase());
+function Catch({ rethrow }: { rethrow: boolean } = { rethrow: false }) {
+  return (
+    target: Object,
+    propertyKey: string | symbol,
+    descriptor: TypedPropertyDescriptor<(...args: any) => any>,
+  ): TypedPropertyDescriptor<(...args: any) => any> | void => {
+    const method = descriptor.value;
+
+    descriptor.value = async (...args: any[]) => {
+      try {
+        const res = await method?.apply(target, args);
+        return res;
+      } catch (error) {
+        if (error instanceof Error) {
+          console.log(e);
+          if (rethrow) {
+            throw error;
+          }
+        }
+      }
+
+      // descriptor.value()
+    };
+  };
+
+  console.log(new UserService90().getUsersInDatabase());
+}
